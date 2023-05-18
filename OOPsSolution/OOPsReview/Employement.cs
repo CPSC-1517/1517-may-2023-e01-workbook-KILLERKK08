@@ -63,6 +63,27 @@
             }
             StartDate = startdate;
         }
+        public void SetEmployemntResponsibilityLevel (SupervisoryLevel level)
+        {
+            Level = level;
+        }
+        public void CorrectStartDate (DateTime startdate)
+        {
+            if (startdate >= DateTime.Today.AddDays(1))
+            {
+                throw new ArgumentException($"The start date{startdate} cannot be in future");
+            }
+            StartDate = startdate;
+        }
 
+        public override string ToString()
+        {
+            return $"{Title},{Level},{StartDate.ToString("MMM dd, yyyy")},{Years}";
+        }
+        public void UpdateCurrentEmployementYearsExperience()
+        {
+            TimeSpan span = DateTime.Now - StartDate;
+            Years = Math.Round((span.Days / 365.25), 1);
+        }
     }
 }
