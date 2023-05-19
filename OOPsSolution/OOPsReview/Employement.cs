@@ -62,6 +62,15 @@
                 throw new ArgumentException($"The start date{startdate} cannot be in future");
             }
             StartDate = startdate;
+            if (years > 0.0)
+            {
+                Years = (double)years;
+            }
+            else
+            {
+                TimeSpan span = DateTime.Now - StartDate;
+                years = Math.Round((span.Days / 365.25), 1);
+            }
         }
         public void SetEmployemntResponsibilityLevel (SupervisoryLevel level)
         {
