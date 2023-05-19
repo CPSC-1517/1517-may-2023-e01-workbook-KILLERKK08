@@ -1,6 +1,6 @@
 ﻿namespace OOPsReview
 {
-    public class Employement
+    public class Employment
     {
         private SupervisoryLevel _Level;
         private string _Title;
@@ -45,13 +45,13 @@
         }
         public DateTime StartDate { get; private set; }
 
-        public Employement ()
+        public Employment ()
         {
             Title = "Unknown";
             Level = SupervisoryLevel.TeamMember;
             StartDate = DateTime.Today;
         }
-        public Employement(string title, SupervisoryLevel level, DateTime startdate, double years = 0.0)
+        public Employment(string title, SupervisoryLevel level, DateTime startdate, double years = 0.0)
         {
             Title = title;
             Level = level;
@@ -72,7 +72,7 @@
                 years = Math.Round((span.Days / 365.25), 1);
             }
         }
-        public void SetEmployemntResponsibilityLevel (SupervisoryLevel level)
+        public void SetEmploymentResponsiblityLevel(SupervisoryLevel level)
         {
             Level = level;
         }
@@ -89,10 +89,12 @@
         {
             return $"{Title},{Level},{StartDate.ToString("MMM dd, yyyy")},{Years}";
         }
-        public void UpdateCurrentEmployementYearsExperience()
+        public double UpdateCurrentEmploymentYearsExperince()
         {
             TimeSpan span = DateTime.Now - StartDate;
             Years = Math.Round((span.Days / 365.25), 1);
+
+            return Years;
         }
     }
 }
