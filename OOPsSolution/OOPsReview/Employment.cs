@@ -84,7 +84,6 @@
             }
             StartDate = startdate;
         }
-
         public override string ToString()
         {
             return $"{Title},{Level},{StartDate.ToString("MMM dd, yyyy")},{Years}";
