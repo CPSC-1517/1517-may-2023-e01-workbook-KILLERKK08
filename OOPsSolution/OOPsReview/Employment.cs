@@ -32,7 +32,7 @@
         }
         public double Years
         {
-            get { return Years; }
+            get { return _Years; }
             set
             {
                 //if (value < 0)
@@ -69,7 +69,7 @@
             else
             {
                 TimeSpan span = DateTime.Now - StartDate;
-                years = Math.Round((span.Days / 365.25), 1);
+                Years = Math.Round((span.Days / 365.25), 1);
             }
         }
         public void SetEmploymentResponsiblityLevel(SupervisoryLevel level)
