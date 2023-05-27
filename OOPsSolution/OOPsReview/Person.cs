@@ -9,13 +9,35 @@ namespace OOPsReview
 {
     public class Person
     {
-        public string FirstName;
-        public string LastName;
+        private string _FirstName;
+        private string _LastName;
 
-        public Person(string firstname, string lastname)
+        public string FirstName
+        { get; set; }
+
+        public string LastName
+        { get; set; }
+        
+        public Residence Address { get; set; }
+        
+        public List<Employment> EmploymentPositions { get; set; }
+        
+        public Person(string firstname, string lastname, Residence address, List<Employment> employmentpositions)
         {
             FirstName = firstname;
             LastName = lastname;
+            if (employmentpositions != null)
+            {
+                EmploymentPositions = employmentpositions;
+            }
+            else
+            {
+                EmploymentPositions = new List<Employment>();
+            }
+        }
+        public Person()
+        {
+            EmploymentPositions = new List<Employment>();
         }
     }
 }
