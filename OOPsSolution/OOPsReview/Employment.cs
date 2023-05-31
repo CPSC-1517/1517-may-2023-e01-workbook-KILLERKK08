@@ -38,7 +38,7 @@
                 //if (value < 0)
                 if (!Utilities.IsZeroOrPositive(value))
                 {
-                    throw new ArgumentOutOfRangeException ("value");
+                    throw new ArgumentOutOfRangeException (value.ToString());
                 }
                 _Years = value;
             }

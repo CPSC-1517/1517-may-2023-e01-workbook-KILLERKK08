@@ -5,6 +5,15 @@ namespace TDDUnitTestDemo
 {
     public class Person_Should
     {
+        public Person Make_SUT_Instance()
+        {
+            string firstname = "Don";
+            string lastname = "Welch";
+            Residence address = new Residence(123, "Maple St.", "Edmonton", "AB", "T6Y7U8");
+            Person me = new Person(firstname, lastname, address, null);
+            return me;
+        }
+
         #region Valid Data
         //Attribute title
         //  Fact which does one test and is usually setup and coded within the test
@@ -51,12 +60,8 @@ namespace TDDUnitTestDemo
         public void Change_FirstName_To_New_Name()
         {
             //Arrange (setup)
-            string firstname = "don";
-            string lastname = "welch";
-            Residence address = new Residence(123, "Maple St.", "Edmonton", "AB", "T6Y7U8");
+            Person me = Make_SUT_Instance();
             string expectedaddress = "123,Maple St.,Edmonton,AB,T6Y7U8";
-            Person me = new Person(firstname, lastname, address, null);
-
             string expectedfirstname = "bob";
 
             // Act
@@ -105,6 +110,15 @@ namespace TDDUnitTestDemo
             me.FirstName.Should().Be(expectedfirstname);
             me.LastName.Should().Be(expectedlastname);
 
+        }
+
+
+        public void Return_The_FullName_of_Person()
+        {
+            string firstname = "Don";
+            string lastname = "Welch";
+            Residence address = new Residence(123, "Maple St.", "Edmonton", "AB", "T6Y7U8");
+            Person sut = new Person(firstname, lastname, address, null);
         }
 
         #endregion
