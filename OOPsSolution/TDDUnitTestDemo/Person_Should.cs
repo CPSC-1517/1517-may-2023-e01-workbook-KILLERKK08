@@ -112,13 +112,26 @@ namespace TDDUnitTestDemo
 
         }
 
-
+        [Fact]
         public void Return_The_FullName_of_Person()
         {
             string firstname = "Don";
             string lastname = "Welch";
             Residence address = new Residence(123, "Maple St.", "Edmonton", "AB", "T6Y7U8");
             Person sut = new Person(firstname, lastname, address, null);
+            string expectedfullname = "Welch, Don";
+
+            string actual = sut.FullName;
+            actual.Should().Be(expectedfullname);
+        }
+
+        [Fact]
+        public void Return_The_Number_Of_Employment_Instances_For_New_Person()
+        {
+            Person sut = Make_SUT_Instance();
+
+            int actual = sut.NumberOfEmployments;
+            actual.Should().Be(0);
         }
 
         #endregion
