@@ -72,5 +72,10 @@ namespace OOPsReview
             FirstName = firstname;
             LastName = lastname;
         }
+
+        public void AddEmployment(Employment employment)
+        {
+            EmploymentPositions.Add(employment);
+        }
     }
 }

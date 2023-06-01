@@ -134,6 +134,47 @@ namespace TDDUnitTestDemo
             actual.Should().Be(0);
         }
 
+        [Fact]
+        public void Add_First_Employment_Instance()
+        {
+            //Arrange
+            Person sut = Make_SUT_Instance();
+            int expectednumberofemployment = 1;
+
+            Employment employment = new Employment("TDD member", SupervisoryLevel.TeamMember, new DateTime(2018, 03, 10));
+
+            //Act
+            sut.AddEmployment(employment);
+
+            //assert
+            sut.NumberOfEmployments.Should().Be(expectednumberofemployment);
+        }
+
+        [Fact]
+        public void Add_Another_Employment_Instance()
+        {
+            //Arrange
+            string firstname = "Don";
+            string lastname = "Welch";
+            Residence address = new Residence(123, "Maple St.", "Edmonton", "AB", "T6Y7U8");
+            
+            int expectednumberofemployment = 3;
+
+            List<Employment> employments = new List<Employment>();
+
+            employments.Add(new Employment("TDD member", SupervisoryLevel.TeamMember, new DateTime(2016, 03, 10)));
+            employments.Add(new Employment("TDD lead", SupervisoryLevel.TeamLeader, new DateTime(2020, 03, 10)));
+
+            Person sut = new Person(firstname, lastname, address, employments);
+
+            Employment employment = new Employment("TDD Supervisor", SupervisoryLevel.Supervisor, new DateTime(2023, 03, 10));
+            //Act
+            sut.AddEmployment(employment);
+
+            //assert
+            sut.NumberOfEmployments.Should().Be(expectednumberofemployment);
+        }
+
         #endregion
 
         #region Invalid Data
