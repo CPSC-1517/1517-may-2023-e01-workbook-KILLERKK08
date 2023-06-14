@@ -11,7 +11,7 @@ namespace OOPsReview
         private string _FirstName;
         private string _LastName;
 
-        public string FirstName
+        public string FirstName 
         {
             get { return _FirstName; }
             set
@@ -21,7 +21,7 @@ namespace OOPsReview
                     throw new ArgumentNullException("first name is required");
                 }
                 _FirstName = value;
-            }
+            } 
         }
         public string LastName
         {
@@ -44,8 +44,8 @@ namespace OOPsReview
 
         public Person(string firstname, string lastname, Residence address, List<Employment> employmentpositions)
         {
-
-
+            
+          
             FirstName = firstname;
             LastName = lastname;
             Address = address;
@@ -53,10 +53,10 @@ namespace OOPsReview
             {
                 EmploymentPositions = employmentpositions;  //store the supplied list of employments
             }
-
+         
         }
 
-
+        
 
         public Person()
         {

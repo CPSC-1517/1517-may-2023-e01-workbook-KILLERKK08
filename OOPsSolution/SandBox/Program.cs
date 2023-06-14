@@ -11,21 +11,35 @@ Console.WriteLine("Hello, World!");
 
 //explore JSon files writing and reading
 //create a Person instance with name, address and employments
-Person me = CreatePerson();
-DisplayPerson(me);
+//Person me = CreatePerson();
+//DisplayPerson(me);
 
 //file path C:\Temp\PersonData.json
-string filepathname = @"C:\Temp\PersonData.json";
-SaveAsJson(me, filepathname);
-Person jsonMe = ReadAsJson(filepathname);
-DisplayPerson(jsonMe);
+//string filepathname = @"C:\Temp\PersonData.json";
+//SaveAsJson(me, filepathname);
+//Person jsonMe = ReadAsJson(filepathname);
+//DisplayPerson(jsonMe);
+
+//AccessReview sample
+AccessorReview ar = new AccessorReview();
+Random rnd = new Random();
+for(int i = 0; i < 10; i++)
+{
+    ar.Number1 = rnd.Next(1,11); //using the set in the property
+    ar.SetNumber2(rnd.Next(1,11)); //using a method in the class to overcome
+                                   //the private set in the property
+    ar.Add = 0;
+    //the get in the Add property is used to return the calculated value 
+    //the get in the Number1 and Number2 properties are used to return the data
+    Console.WriteLine($"Number1: {ar.Number1} Number2: {ar.Number2} Add: {ar.Add}");
+}
 
 Person CreatePerson()
 {
     Residence myHome = new Residence(123, "Maple St.", "Edmonton", "AB", "T6Y7U8");
     List<Employment> employments = Read_Employment_Collection_From_CSV();
     Person person = new Person("don", "welch", myHome, employments);
-    return person;
+    return person; 
 }
 void DisplayPerson(Person person)
 {
@@ -33,7 +47,7 @@ void DisplayPerson(Person person)
     Console.WriteLine($"Name: {person.FullName}");
     Console.WriteLine($"Residence: {person.Address.ToString()}");
     Console.WriteLine("\nEmployments");
-    foreach (var item in person.EmploymentPositions)
+    foreach(var item in person.EmploymentPositions)
     {
         Console.WriteLine($"\t{item.ToString()}");
     }
@@ -108,10 +122,10 @@ Person ReadAsJson(string filepathname)
 
 void FileIOCSV()
 {
-
+    
     //create a collection of Employment instances to write out the data
-    List<Employment> employments = new List<Employment>();
-    employments.Add(new Employment("SAS Member", (SupervisoryLevel)Enum.Parse(typeof(SupervisoryLevel), "TeamMember"), DateTime.Parse("2015/06/14"), 3.6));
+    List <Employment> employments = new List <Employment>();
+    employments.Add(new Employment("SAS Member", (SupervisoryLevel)Enum.Parse(typeof(SupervisoryLevel),"TeamMember"),DateTime.Parse("2015/06/14"),3.6));
     employments.Add(new Employment("SAS Lead", (SupervisoryLevel)Enum.Parse(typeof(SupervisoryLevel), "TeamLeader"), DateTime.Parse("2019/01/24"), 2.8));
     employments.Add(new Employment("SAS Lead", (SupervisoryLevel)Enum.Parse(typeof(SupervisoryLevel), "Supervisor"), DateTime.Parse("2021/09/24"), 1.8));
 
@@ -119,7 +133,7 @@ void FileIOCSV()
 
     Write_Employment_Collection_To_CSV(employments);
 
-    List<Employment> employmentsRead = new List<Employment>();
+    List <Employment> employmentsRead = new List <Employment>();
     employmentsRead = Read_Employment_Collection_From_CSV();
 
     DumpEmployments(employmentsRead);
@@ -176,7 +190,7 @@ List<Employment> Read_Employment_Collection_From_CSV()
         Console.WriteLine(ex.Message);
     }
     return employmentCollection;
-
+ 
 }
 void Write_Employment_Collection_To_CSV(List<Employment> employments)
 {
@@ -187,10 +201,10 @@ void Write_Employment_Collection_To_CSV(List<Employment> employments)
 
     //file path C:\Temp\EmploymentData.txt
     string filepathname = @"C:\Temp\EmploymentData.txt";
-
+    
     //convert List<Employment> into a List<string>
     List<string> employmentCollectionAsStrings = new List<string>();
-    foreach (Employment employment in employments)
+    foreach(Employment employment in employments)
     {
         employmentCollectionAsStrings.Add(employment.ToString());
     }
@@ -201,7 +215,7 @@ void Write_Employment_Collection_To_CSV(List<Employment> employments)
 void DumpEmployments(List<Employment> employments)
 {
     Console.WriteLine("\n\t\tDump of employment instances\n");
-    for (int i = 0; i < employments.Count; i++)
+    for(int i = 0; i < employments.Count; i++)
     {
         Console.WriteLine($"Instance {i}:\t {employments[i].ToString()}");
     }
@@ -218,7 +232,7 @@ void RecordSamples()
     myHome = new Residence(321, "Maple St.", "Edmonton", "AB", "T6Y7U8");
     Console.WriteLine(myHome.ToString());
 }
-void RefactorSample()
+ void RefactorSample()
 {
     //example of refactoring
     //Refactoring is the process of restructing code, while not

@@ -54,7 +54,7 @@ namespace TDDUnitTestDemo
             sut.Address.ToString().Should().Be(expectedaddress);
             sut.EmploymentPositions.Count().Should().Be(0);
         }
-
+       
 
         [Fact]
         public void Change_FirstName_To_New_Name()
@@ -68,14 +68,14 @@ namespace TDDUnitTestDemo
 
             // Assert
             me.FirstName.Should().Be(expectedfirstname);
-
+            
         }
 
         [Fact]
         public void Change_LastName_To_New_Name()
         {
             //Arrange (setup)
-
+            
             Person me = Make_SUT_Instance();
 
             string expectedlastname = "smith";
@@ -92,7 +92,7 @@ namespace TDDUnitTestDemo
         public void Change_Both_First_And_Last_Name_To_New_Name()
         {
             //Arrange (setup)
-
+          
             Person me = Make_SUT_Instance();
             string expectedfirstname = "pat";
             string expectedlastname = "smith";
@@ -110,7 +110,7 @@ namespace TDDUnitTestDemo
         public void Return_The_FullName_of_Person()
         {
             //Arrange (setup)
-
+          
             Person sut = Make_SUT_Instance();
             string expectedfullname = "welch, don";
 
@@ -120,7 +120,7 @@ namespace TDDUnitTestDemo
 
             //Assert (testing of the action)
             actual.Should().Be(expectedfullname);
-
+           
         }
 
         [Fact]
@@ -149,7 +149,7 @@ namespace TDDUnitTestDemo
             int expectednumberofemployment = 1;
 
             Employment employment = new Employment("TDD member", SupervisoryLevel.TeamMember, new DateTime(2018, 03, 10));
-
+           
             //Act (execution)
             sut.AddEmployment(employment);
 
@@ -168,7 +168,7 @@ namespace TDDUnitTestDemo
             string firstname = "don";
             string lastname = "welch";
             Residence address = new Residence(123, "Maple St.", "Edmonton", "AB", "T6Y7U8");
-
+        
             List<Employment> employments = new List<Employment>();
             Employment emp1 = new Employment("TDD member", SupervisoryLevel.TeamMember, new DateTime(2016, 03, 10));
             Employment emp2 = new Employment("TDD Lead", SupervisoryLevel.TeamLeader, new DateTime(2020, 03, 10));
@@ -201,7 +201,7 @@ namespace TDDUnitTestDemo
         [InlineData(null, "welch")]
         [InlineData("don", null)]
         [InlineData("", "welch")]
-        [InlineData("don", "")]
+        [InlineData("don","")]
         [InlineData("    ", "welch")]
         [InlineData("don", "     ")]
         public void Creating_an_Greedy_Instance_With_No_Names_Throws_Expection(string firstname, string lastname)
@@ -231,9 +231,9 @@ namespace TDDUnitTestDemo
         public void Throw_Expection_When_Setting_FirstName_To_Missing_Data(string changename)
         {
             //Arrange (setup)
-
+           
             Person me = Make_SUT_Instance();
-
+            
 
             //Act (execution) (testing will the property capture an invalid name change)
 
@@ -246,7 +246,7 @@ namespace TDDUnitTestDemo
 
             //Assert (testing of the action)
             action.Should().Throw<ArgumentNullException>().WithMessage("*first name is required*");
-
+           
         }
 
         [Theory]
@@ -259,7 +259,7 @@ namespace TDDUnitTestDemo
         public void Throw_Expection_When_Setting_LastName_To_Missing_Data(string changename)
         {
             //Arrange (setup)
-
+            
             Person me = Make_SUT_Instance();
 
 
@@ -287,13 +287,13 @@ namespace TDDUnitTestDemo
         public void Throw_Expection_When_Changing_First_And_Last_Name(string changefirstname, string changelastname)
         {
             //Arrange (setup)
-
+          
             Person me = Make_SUT_Instance();
 
 
 
             //Act (execution) (sut subject under test)
-            Action action = () => me.ChangeName(changefirstname, changelastname);
+            Action action = () => me.ChangeName(changefirstname,changelastname);
 
             //Assert (testing of the action)
             action.Should().Throw<ArgumentNullException>().WithMessage("*is required*");
@@ -305,7 +305,7 @@ namespace TDDUnitTestDemo
             //Arrange (setup)
             //no employment instances
             Person sut = Make_SUT_Instance();
-
+           
 
             Employment employment = new Employment("TDD member", SupervisoryLevel.TeamMember, new DateTime(2018, 03, 10));
 

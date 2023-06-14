@@ -49,17 +49,17 @@ namespace OOPsReview
         ///          private: accessable ONLY within the class
         ///  a property DOES NOT have ANY declare incoming parameter list!!!!!
         ///  </summary> 
-
-        public string Title
-        {
+        
+        public string Title 
+        { 
             //referred to as the accessor
             //returns the string associated with this property
-            get { return _Title; }
+            get { return _Title; } 
             //referred to as the mutator
             //it is within the set that the validation of the data
             //  is done to determine if the data is acceptable
             //by default set is public
-            set
+            set 
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
@@ -67,12 +67,12 @@ namespace OOPsReview
                 }
                 //else
                 //{
-                _Title = value;
+                    _Title = value;
                 //}
             }
         }
 
-        public SupervisoryLevel Level
+        public  SupervisoryLevel Level
         {
             get { return _Level; }
             private set
@@ -89,7 +89,7 @@ namespace OOPsReview
                 //
                 //to test for a defined enum value use Enum.IsDefined(typeof(xxxx), value)
                 //  where xxxx is the name of the enum datatype
-                if (!Enum.IsDefined(typeof(SupervisoryLevel), value))
+                if (!Enum.IsDefined(typeof(SupervisoryLevel), value)) 
                 {
                     throw new ArgumentException($"Supervisory level is invalid: {value}");
                 }
@@ -124,7 +124,7 @@ namespace OOPsReview
         //using a public or private set is a design decision
         public DateTime StartDate { get; private set; }
 
-
+       
 
         // Constructors
         //
@@ -151,7 +151,7 @@ namespace OOPsReview
             //     Employment myInstance = new Employment();
             //A practice that I personally use is to avoid referring my data members directly
             //  specially if the property contains validation
-            Title = "Unknown";
+            Title ="Unknown";
             Level = SupervisoryLevel.TeamMember;
             StartDate = DateTime.Today;
             //optionally one could set years to zero, but that is the system default
@@ -240,7 +240,7 @@ namespace OOPsReview
             Years = Math.Round((span.Days / 365.25), 1);
             return Years;
         }
-
+        
         public override string ToString()
         {
             return $"{Title},{Level},{StartDate.ToString("MMM dd yyyy")},{Years}";
@@ -264,7 +264,7 @@ namespace OOPsReview
             //  creating the instance of intent
 
             string[] pieces = str.Split(',');
-            if (pieces.Length != 4)
+            if (pieces.Length != 4) 
             {
                 throw new FormatException($"Record {str} not in the expected format.");
             }
@@ -300,7 +300,7 @@ namespace OOPsReview
             {
                 employment = Parse(str);
             }
-            catch (FormatException ex)
+            catch(FormatException ex) 
             {
                 result = false; //indicates failure
             }
