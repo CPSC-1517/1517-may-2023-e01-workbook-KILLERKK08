@@ -17,11 +17,15 @@ namespace WebApp.Pages.Samples
         // b) the services you wish to inject will be parameters on the constructor
         // c) save the incoming parameter values in a public property
 
-        public IWebHostEnvironment _webHostEnvironment { get; set; }
-        public StudentMarkReportModel(IWebHostEnvironment env) 
-        { 
-            _webHostEnvironment = env;
-        }
+        //public IWebHostEnvironment _webHostEnvironment { get; set; }
+        //public StudentMarkReportModel(IWebHostEnvironment env) 
+        //{ 
+        //    _webHostEnvironment = env;
+        //}
+
+
+
+
         public void OnGet()
         {
             //the student mark report will be loaded as the page comes up for the
@@ -29,8 +33,11 @@ namespace WebApp.Pages.Samples
             //therefore, all code will be in the OnGet() event
 
             //get the path to your web app root
-            string contentPathname = _webHostEnvironment.ContentRootPath;
-            string filePathname = Path.Combine(contentPathname, @"Data\StudentMarks.txt");
+            //use relative addressing to acces the data file records in an array
+            //using this technique woll allow us to skip the injection dependency for the IWebHostEnvironment
+            //it is important that you practice good addressing by including the .(dot) indicating  the current folder which in this case id the top of the web site.
+
+            string filePathname = @".\Data\StudentMarks.txt";
 
             //userdata will contain all of the data file records in an array
             Array userdata = null;

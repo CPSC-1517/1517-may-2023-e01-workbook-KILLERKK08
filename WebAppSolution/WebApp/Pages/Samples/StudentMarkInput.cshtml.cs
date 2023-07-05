@@ -10,7 +10,7 @@ namespace WebApp.Pages.Samples
     {
         public string Feedback { get; set; }
         public bool HasFeedback { get { return !string.IsNullOrWhiteSpace(Feedback); } }
-        public IWebHostEnvironment _webHostEnvironment { get; set; }
+        
 
         public List<Assessment> assessmentList { get; set; } = new List<Assessment>();
 
@@ -31,10 +31,6 @@ namespace WebApp.Pages.Samples
         //[BindProperty]
         //public double Mark { get; set; }
 
-        public StudentMarkInputModel(IWebHostEnvironment env)
-        {
-            _webHostEnvironment = env;
-        }
         public void OnGet()
         {
            PopulateAssessment();
@@ -87,8 +83,8 @@ namespace WebApp.Pages.Samples
 
                 //next is to access and write the string to a data file.
                 //get the path to your web app root
-                string contentPathname = _webHostEnvironment.ContentRootPath;
-                string filePathname = Path.Combine(contentPathname, @"Data\StudentMarks.txt");
+
+                string filePathname =@".\Data\StudentMarks.txt";
 
                 //append to the file
                 //if the file does not exist, it will be created for me
